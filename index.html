@@ -7,6 +7,7 @@
         <meta name="author" content="" />
         <title>Sean Parrott-Wolfe</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -391,7 +392,8 @@
                             </div>
                             <!-- <div class="form-group mb-md-0">
                                 <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
-                                <p class="help-block text-danger"></p>
+                                <p class="help-block text-danger"></p> 
+                                
                             </div> -->
                         </div>
                         <div class="col-md-6">
@@ -401,6 +403,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LcZh0sbAAAAAERhlOjconI8EFWzfgjzrin98EhL"></div>
+                    <br/>
+                    <input type="submit" value="Submit">
                     <div class="text-center">
                         <div id="success"></div>
                         <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
