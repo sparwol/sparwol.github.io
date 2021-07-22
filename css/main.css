@@ -1135,7 +1135,7 @@ input::-moz-focus-inner {
 }
 .section-intro h1 {
   font-family: "librebaskerville-bold", serif;
-  font-size: 4.8rem;
+  font-size: 2.4rem;
   line-height: 1.375;
   color: #151515;
 }
@@ -1171,7 +1171,7 @@ input::-moz-focus-inner {
  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 1024px) {
   .section-intro h1 {
-    font-size: 4.4rem;
+    font-size: 2.4rem;
   }
   .section-intro .lead {
     font-size: 1.7rem;
