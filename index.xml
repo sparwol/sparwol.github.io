@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on </title>
+    <link>http://example.org/</link>
+    <description>Recent content in Home on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Nov 2020 00:00:00 +1300</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real Estate Flipping</title>
+      <link>http://example.org/posts/2020/11/11/real-estate-flipping/</link>
+      <pubDate>Wed, 11 Nov 2020 00:00:00 +1300</pubDate>
+      
+      <guid>http://example.org/posts/2020/11/11/real-estate-flipping/</guid>
+      <description>Flipping is a term used primarily in the US to describe purchasing a revenue-generating asset and quickly reselling it for profit.</description>
+    </item>
+    
+    <item>
+      <title>Business Mergers</title>
+      <link>http://example.org/posts/2020/08/10/business-mergers/</link>
+      <pubDate>Mon, 10 Aug 2020 00:00:00 +1300</pubDate>
+      
+      <guid>http://example.org/posts/2020/08/10/business-mergers/</guid>
+      <description>Mergers and acquisitions are transactions in which the ownership of companies, other business organizations or their operating units are transferred or combined.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://example.org/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/about/</guid>
+      <description>Serving your community for over a century, Justice Law is committed to helping people through a number of services. Our services range from conveyancing, mortgages to family law.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://example.org/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/contact/</guid>
+      <description>Come see us in person, give us a call, or send us a message with your details and we&amp;rsquo;ll be in contact shortly after.</description>
+    </item>
+    
+    <item>
+      <title>Contact Success</title>
+      <link>http://example.org/contact-success/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/contact-success/</guid>
+      <description>Thank you for reaching out, we&amp;rsquo;ll read your message and be in contact as soon as possible.</description>
+    </item>
+    
+    <item>
+      <title>Services</title>
+      <link>http://example.org/services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/services/</guid>
+      <description>Our specialised team has the skill and experience to provide a range of services. The utmost care is taken with all our work.</description>
+    </item>
+    
+    <item>
+      <title>Terms</title>
+      <link>http://example.org/terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/terms/</guid>
+      <description>This is usually where the fine print would go, but here&amp;rsquo;s part of the Wikipedia entry on dogs instead:
+From Wikipedia, the free encyclopedia</description>
+    </item>
+    
+  </channel>
+</rss>
