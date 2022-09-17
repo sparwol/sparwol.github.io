@@ -1,0 +1,41 @@
+{{ define "main" }}
+	<article class="content">
+		<div>{{ .Content }}</div>
+	</article>
+
+	{{ if .Site.Data.authors }}
+		<h3>My Background</h3>
+
+	  <ul class="staff-list">
+			{{ range .Site.Data.authors }}
+				{{ if .is_staff_member }}
+					<li class="staff">
+						<div class="staff-details">
+							<div class="staff-image">
+								<img src="{{ .image }}" alt="Staff photo for {{ .name }}" height="240">
+							</div>
+							<ul class="staff-info">
+								<li><h4>{{ .name }}</h4></li>
+								<li><small><a>{{ .credentials }}</a></small></li>
+							</ul>
+						</div>
+
+						<div class="staff-bio">
+							<p>{{ .description }}</p>
+							<p><h4>Certifications:</h4>
+								<ul><small>
+									<li>Zero Point Security Certified Red Team Operator (CRTO) - in progress</li>
+									<li>TCM Security Practical Network Penetration Tester (PNPT) - 2022</li>
+									<li>CompTIA Security+ SY0-601 - 2021</li>
+									<li>MCSE - 2007</li>
+									<li>MCSA - 2007</li>
+									<li>CompTIA Network+ - 2006</li>
+									<li>CompTIA A+ - 2006</li></small>
+								</ul></p>
+						</div>
+					</li>
+				{{ end }}
+			{{ end }}
+		</ul>
+	{{ end }}
+{{ end }}
