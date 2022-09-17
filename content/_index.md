@@ -6,15 +6,15 @@ menu:
   footer:
     weight: 1
 testimonials:
-  - message: Sparwol taught me everything I know! 
+  - message: Learning resources 
     image: "https://placekitten.com/g/60/60?a=.png"
-    name: My Cat
-  - message: I would have Sean's children. 
+    name: Resources
+  - message: What we offer
     image: "https://www.fillmurray.com/60/60?a=.png"
-    name: My Wife
-  - message: Sean is a true professional! He always exceeds my information security needs and expectations.
+    name: Services
+  - message: Updates
     image: "https://placebear.com/60/60?a=.png"
-    name: My Dog
+    name: Blog
 _options:
   image:
     width: 60
