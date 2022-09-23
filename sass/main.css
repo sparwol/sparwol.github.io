@@ -117,7 +117,7 @@ header {
 
 header a,
 footer a {
-  color: #dadada; }
+  color: #3d3d3d; }
   header a.active,
   footer a.active {
     border-bottom: 2px solid; }
