@@ -9,7 +9,7 @@ menu:
     weight: 3
 ---
 
-Our specialised team has the skill and experience to provide a range of services. The utmost care is taken with all our work. Final reporting documents all found vulnerabilities and the reproducible steps that were taken to compromise the network. Recommendations for remediation and/or mitigation are included in detail. The main streams of work we perform are as follows:
+We provide a range of services. The utmost care is taken with all our work. Final reporting documents all found vulnerabilities and the reproducible steps that were taken to compromise the network. Recommendations for remediation and/or mitigation are included in detail. The main streams of work we perform are as follows:
 
 ### Risk and Vulnerability Assessment
 Risk Assessments are often the first step in an audit of a company's security posture. We determine the most valued assets, whether information, people, physical items, or finances, and assess both the likelihood and impact of a loss or breach.
