@@ -1,0 +1,13 @@
+<div class="staff-details">
+	<div class="staff-image">
+		<img src="{{ .image }}" alt="Staff photo for {{ .name }}" width="120" height="120">
+	</div>
+	<ul class="staff-info">
+		<li><h4>{{ .name }}</h4></li>
+		<li><small>{{ .credentials }}</small></li>
+	</ul>
+</div>
+
+<div class="staff-bio">
+	<p>{{ .description }}</p>
+</div>
