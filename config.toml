@@ -5,7 +5,7 @@ disqusShortname = ""
 googleAnalytics = ""
 Paginate = 10
 PaginatePath = "/"
-enableRobotsTXT = true
+enableRobotsTXT = false
 publishDir = "docs"
 
 [taxonomies]
