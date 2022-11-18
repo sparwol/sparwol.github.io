@@ -10,6 +10,8 @@ menu:
     weight: 2
 ---
 
-Sparwol is a private information security and cybersecurity consultant offering a variety of services. 
+Sparwol is a private information security and cybersecurity consultant offering a variety of security services to small businesses. 'Why small businesses?' you might ask. The answer is simple: Small businesses are more affected by attacks. 
 
-In order to effectively address a client's security needs, a whole-picture view is required. Which assets are most valuable or most important to protect? Where is the weakest link and how secure is it? How well are employees trained and educated? These are critical questions that must be asked. 
+Small to mid-sized businesses are increasingly the victims of <a href="https://www.prnewswire.com/news-releases/43-of-cyberattacks-target-small-businesses-300729384.html">cyber attacks</a> because typically they are easier targets. However, with the right planning and education, businesses of any size can be properly prepared to minimizing risk, and protect their most-valued business-critical assets.
+
+
