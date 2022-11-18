@@ -19,8 +19,8 @@ body {
 header {
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: calc(50% - 40px) 175px;
-	height: 420px;
+	background-position: calc(50% - 30px) 175px;
+	height: 220px;
 	box-sizing: border-box;
 
 	.container {
@@ -60,7 +60,7 @@ header {
 header,
 footer {
 	a {
-		color: #3A4145;
+		color: #3f3f3f;
 
 		&.active {
 			border-bottom: 2px solid;

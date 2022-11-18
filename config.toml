@@ -6,6 +6,7 @@ googleAnalytics = ""
 Paginate = 10
 PaginatePath = "/"
 enableRobotsTXT = true
+publishDir = "docs"
 
 [taxonomies]
   category = "categories"
@@ -23,7 +24,7 @@ enableRobotsTXT = true
   title = "Sparwol Security"
 
 [params._selectData]
-  call_to_actions = ["Contact", "Blog", "Map"]
+  call_to_actions = ["Contact", "Blog"]
   social_icons = ["Facebook", "Instagram", "LinkedIn", "Pinterest", "Tumblr", "Twitter", "YouTube", "RSS"]
 
 [params._options.type]
