@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on </title>
+    <link>https://sparwol.com/categories/</link>
+    <description>Recent content in Categories on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Sep 2022 00:00:00 +1300</lastBuildDate><atom:link href="https://sparwol.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Weekly-log</title>
+      <link>https://sparwol.com/categories/weekly-log/</link>
+      <pubDate>Sun, 11 Sep 2022 00:00:00 +1300</pubDate>
+      
+      <guid>https://sparwol.com/categories/weekly-log/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ransomware</title>
+      <link>https://sparwol.com/categories/ransomware/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +1300</pubDate>
+      
+      <guid>https://sparwol.com/categories/ransomware/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,11 +1,11 @@
-baseURL = "https://sparwol.github.io"
+baseURL = "https://sparwol.com/"
 languageCode = "en-us"
 summaryLength = 20
 disqusShortname = ""
 googleAnalytics = ""
 Paginate = 10
 PaginatePath = "/"
-enableRobotsTXT = false
+enableRobotsTXT = true
 publishDir = "docs"
 
 [taxonomies]
@@ -18,7 +18,7 @@ publishDir = "docs"
   posts = ":section/:year/:month/:day/:title/"
 
 [params]
-  backgroundImagePath = "/images/favicon.png"
+  backgroundImagePath = "/images/bg1.png"
   description = "Sparwol Security"
   images = ["siteicon.png"]
   title = "Sparwol Security"
