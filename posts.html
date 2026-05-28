@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts // sparwol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-id" href="index.html">sparwol.com<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="posts.html" class="active">posts</a></li>
+    <li><a href="index.html#tools">tools</a></li>
+    <li><a href="index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+
+<section class="sec" style="padding-top:7rem">
+  <div class="sec-header">
+    <span class="sec-label">all posts</span>
+    <span style="font-size:0.68rem;color:var(--dim)">4 posts</span>
+  </div>
+
+  <div class="archive-list">
+
+    <div class="archive-item">
+      <span class="arc-date">2024-12-10</span>
+      <div class="arc-body">
+        <a class="arc-title" href="posts/kerberos-delegation-abuse.html">Kerberos Delegation Abuse: Unconstrained, Constrained, and RBCD</a>
+        <p class="arc-desc">How to escalate to Domain Admin by exploiting a feature that's working exactly as designed. Covers the TGT caching problem, S4U extension abuse, the /altservice SPN bypass, and a full RBCD attack chain from a real engagement.</p>
+        <div class="arc-meta">
+          <span class="post-cat cat-ad">Active Directory</span>
+          <span class="arc-time">10 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-item">
+      <span class="arc-date">2024-11-28</span>
+      <div class="arc-body">
+        <a class="arc-title" href="posts/kerberos-delegation-defense.html">Why Your Kerberos Delegation Config Is a Privilege Escalation Path</a>
+        <p class="arc-desc">What attackers see when they look at your delegation configuration, why your current controls don't stop it, and a practical week-by-week remediation plan. Includes BloodHound queries, PowerShell audit commands, and detection guidance.</p>
+        <div class="arc-meta">
+          <span class="post-cat cat-defense">Defense</span>
+          <span class="arc-time">9 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-item">
+      <span class="arc-date">2024-11-12</span>
+      <div class="arc-body">
+        <a class="arc-title" href="posts/identity-attack-surface.html">Identity Is the Attack Surface</a>
+        <p class="arc-desc">Modern enterprises don't get breached through unpatched software — they get breached through identity. How credential abuse, token theft, Kerberoasting, and delegation misuse replaced exploit chains as the primary attack vector in real engagements.</p>
+        <div class="arc-meta">
+          <span class="post-cat cat-identity">Tradecraft</span>
+          <span class="arc-time">10 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-item">
+      <span class="arc-date">2024-10-30</span>
+      <div class="arc-body">
+        <a class="arc-title" href="posts/red-team-vs-pentest.html">Red Team vs Penetration Test: Understanding the Difference</a>
+        <p class="arc-desc">The terms are used interchangeably — but they test fundamentally different things. A breakdown of objectives, methodologies, scope, deliverables, and how to decide which engagement type actually fits your organisation's security maturity.</p>
+        <div class="arc-meta">
+          <span class="post-cat cat-method">Methodology</span>
+          <span class="arc-time">11 min read</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav">
+    <a href="index.html">home</a>
+    <a href="index.html#tools">tools</a>
+    <a href="index.html#about">about</a>
+    <a href="mailto:sean@sparwol.com">contact</a>
+  </nav>
+</footer>
+
+</body>
+</html>
