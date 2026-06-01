@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harvest Now, Decrypt Later // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-crypto">Applied Crypto</span></div>
+  <h1>Harvest Now, Decrypt Later</h1>
+  <div class="post-meta-row"><span>In progress</span><span>·</span><span>Applied cryptographic attacks</span></div>
+</div>
+<div class="post-status-bar is-wip">Working draft.</div>
+<div class="article-body">
+
+<p>Here is a finding I have started writing into reports, and the conversation it produces is always the same. We exfiltrated a large volume of encrypted data during the engagement. The client's response: it was encrypted, so it's fine. And my response is: it was encrypted <em>today</em>.</p>
+
+<p>The entire defensive posture around data exfiltration assumes that encrypted data is safe data. For anything with a short shelf life, that assumption holds. For anything that stays sensitive for years — and most genuinely sensitive data does — the assumption is quietly false, and it has been false for a while.</p>
+
+<h2>The Mechanism</h2>
+
+<p>Most of the encryption protecting most data in transit and at rest today relies on RSA or elliptic curve cryptography. Both rest on mathematical problems — integer factorisation, discrete logarithm — that are hard for classical computers and, since Shor's 1994 result, known to be efficiently solvable by a sufficiently capable quantum computer.</p>
+
+<p>The hardness was never a property of the mathematics. It was a property of the available computer. Computers change. The timeline for a cryptographically relevant quantum computer is genuinely uncertain and contested, but the timeline is not actually the point.</p>
+
+<p>The point is that an adversary does not need the quantum computer today. They need the ciphertext today, and the quantum computer eventually. So they record it now and decrypt it when they can. This is not speculative. It has a name in the literature — harvest now, decrypt later — and the actors with the infrastructure to record encrypted traffic at scale are exactly the actors you would expect to be doing it.</p>
+
+<h2>The Offensive Reframe</h2>
+
+<p>From the attacker's side of the table, this changes the value calculation on exfiltration. Conventional thinking says: exfiltrating encrypted data is low value, because you can't read it. Harvest-now-decrypt-later thinking says: exfiltrating encrypted data of long-lived secrets is a deferred win, and the deferral may be shorter than the data's sensitivity window.</p>
+
+<p>What retains value across that window:</p>
+<ul>
+  <li>Anything that identifies a person permanently — government identifiers, biometric templates, medical histories. These do not expire.</li>
+  <li>Long-term cryptographic material — root keys, CA private keys, signing keys with multi-year validity.</li>
+  <li>State and strategic data — anything classified, anything with a declassification horizon measured in decades.</li>
+  <li>Source code and architectural documentation for systems that will still be deployed in ten years.</li>
+</ul>
+
+<h2>The Engagement Implication</h2>
+
+<p>This belongs in reports, and it changes how an exfiltration finding should be written. "We exfiltrated 4GB of TLS-protected data" is not a closed finding just because the transport was encrypted. The questions that determine real impact are: what was in it, how long does that content stay sensitive, and what is the realistic decryption horizon against the threat model the client actually faces.</p>
+
+<p>For a small business whose threat model is opportunistic ransomware, harvest-now-decrypt-later is not a relevant risk and saying so is honest. For a financial institution, a defense contractor, a healthcare system, or anyone holding data that is sensitive for a human lifetime, "it was encrypted with RSA" is a statement about today that says much less about tomorrow than the client thinks it does.</p>
+
+<div class="callout">The clean version of the argument: encryption is a time-bound control, and most organisations treat it as a permanent one. The gap between those two framings is where harvest-now-decrypt-later lives — and it is an offensive opportunity precisely because defenders don't model time into their crypto assumptions.</div>
+
+<p><em>Continuing: post-quantum migration status, what crypto-agility actually requires, and how to assess a client's exposure to the deferred-decryption threat.</em></p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← previous</div><div class="post-nav-title"><a href="algorithm-isnt-the-target.html">The Algorithm Isn't the Target</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">next →</div><div class="post-nav-title"><a href="crypto-posture-recon.html">Cryptographic Posture as Reconnaissance</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>

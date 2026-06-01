@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identity Is the Attack Surface // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-id" href="../index.html">sparwol.com<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../index.html#tools">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem">
+    <span class="cat cat-id">AD &amp; Identity</span>
+  </div>
+  <h1>Identity Is the Attack Surface</h1>
+  <div class="post-meta-row">
+    <span>2024-11-12</span>
+    <span>·</span>
+    <span>10 min read</span>
+    <span>Credentials · Token Abuse · Lateral Movement</span>
+  </div>
+</div>
+
+<div class="article-body">
+
+<p>The security industry has spent decades optimising for the wrong threat model. We scan for vulnerabilities. We patch systems. We rate CVEs by severity and scramble to remediate critical findings before attackers exploit them.</p>
+
+<p>But here's what actually happens in modern breaches: we don't exploit vulnerabilities. We exploit identity.</p>
+
+<p>We don't need a remote code execution bug when we can steal a token. We don't need privilege escalation exploits when delegation is misconfigured. We don't need zero-days when service accounts have domain admin rights and credentials stored in scripts. The attack surface isn't your unpatched servers. It's every identity that has access to something valuable — and in modern enterprises, that's everything.</p>
+
+<h2>Why Vulnerabilities Don't Matter Anymore</h2>
+
+<p>Let's be clear: vulnerabilities still exist. Software still has bugs. CVEs still get published. But the economics of exploitation have shifted dramatically.</p>
+
+<p>A remote code execution vulnerability requires: finding an exploitable bug, developing a working exploit, bypassing ASLR and DEP, hoping the target hasn't patched, and dealing with EDR that might catch your shellcode.</p>
+
+<p>Credential abuse requires: a valid username and a password, hash, or token. That's it. No exploit development. No memory corruption. No hoping for vulnerable versions.</p>
+
+<p>And the difference in operational success rate is staggering. Exploits fail. Patches break them. Mitigations stop them. But credentials? Credentials work. Every time. Because they're <em>supposed</em> to work.</p>
+
+<h2>The Identity Attack Surface</h2>
+
+<p>Every modern enterprise has thousands of identities. User accounts, service accounts, admin accounts, emergency access accounts, service principals, managed identities, API keys, OAuth applications, SAML federations. Each one is a potential entry point. Each one has permissions. Each one can authenticate to something. And most of them are over-privileged, under-monitored, and easier to compromise than you think.</p>
+
+<h3>Users: The Human Attack Vector</h3>
+
+<p>User credentials are the easiest to obtain. Phishing works. Password reuse works. Credential stuffing works. Consent phishing works. AI-generated pretexting works. Once we have a user's credentials, we have email access for intelligence gathering and pivoting, SaaS application access, VPN access for internal network penetration, and often cloud console access depending on role assignments.</p>
+
+<p>A single user account is rarely the objective. It's the foothold. From there, we escalate.</p>
+
+<h3>Service Accounts: The Forgotten Keys to the Kingdom</h3>
+
+<p>Service accounts are where the real privilege lives. They run automation, CI/CD pipelines, backup jobs, monitoring systems, database replication, API integrations. And they're usually:</p>
+
+<ul>
+  <li><strong>Over-privileged:</strong> Given admin rights because "it made the script work."</li>
+  <li><strong>Poorly protected:</strong> Passwords in config files, environment variables, or CI/CD secrets.</li>
+  <li><strong>Unmonitored:</strong> No MFA, no conditional access, no anomaly detection.</li>
+  <li><strong>Persistent:</strong> Never expire, never rotate, never reviewed.</li>
+</ul>
+
+<p>A service account with domain admin is functionally equivalent to a zero-day — except it never gets patched.</p>
+
+<h3>Tokens: The New Password</h3>
+
+<p>Modern authentication has moved beyond passwords. OAuth tokens, refresh tokens, SAML assertions, Kerberos tickets, JWT tokens, Azure AD Primary Refresh Tokens (PRTs), session cookies. These aren't "more secure than passwords" — they're just different credentials. And in many cases, they're better from an attacker's perspective:</p>
+
+<ul>
+  <li><strong>No MFA required:</strong> Token theft bypasses MFA entirely.</li>
+  <li><strong>Longer validity:</strong> Refresh tokens can last days, weeks, or months.</li>
+  <li><strong>Harder to detect:</strong> Token use looks identical to legitimate auth.</li>
+  <li><strong>Easier to exfiltrate:</strong> Just strings in memory or on disk.</li>
+</ul>
+
+<p>Passwordless authentication didn't eliminate credential theft. It just changed what we steal.</p>
+
+<h2>How We Exploit Identity</h2>
+
+<p>The techniques for exploiting identity are well-documented, mature, and reliable.</p>
+
+<h3>Initial Access: Getting That First Credential</h3>
+
+<ul>
+  <li><strong>Phishing:</strong> Credential harvesting pages that bypass MFA via real-time proxying (Evilginx, Modlishka).</li>
+  <li><strong>Consent phishing:</strong> OAuth apps that request permissions users approve without reading.</li>
+  <li><strong>Password spraying:</strong> Common passwords against valid usernames — no lockouts if you're careful.</li>
+  <li><strong>Credential stuffing:</strong> Breach databases combined with password reuse.</li>
+  <li><strong>OSINT:</strong> Credentials in public repos, paste sites, or exposed config files.</li>
+</ul>
+
+<h3>Privilege Escalation: Turning Users into Admins</h3>
+
+<ul>
+  <li><strong>Kerberoasting:</strong> Request service tickets for any SPN, crack them offline.</li>
+  <li><strong>AS-REP Roasting:</strong> Target accounts with pre-auth disabled, crack their hashes.</li>
+  <li><strong>ACL abuse:</strong> WriteDACL, WriteOwner, GenericAll on privileged objects.</li>
+  <li><strong>GPO manipulation:</strong> Modify Group Policy to add ourselves to privileged groups.</li>
+  <li><strong>Delegation abuse:</strong> Kerberos delegation to impersonate high-value accounts.</li>
+  <li><strong>Cloud IAM enumeration:</strong> Find over-permissioned roles, escalate through misconfigured policies.</li>
+</ul>
+
+<p>Notice what's missing: memory corruption, exploit chains, kernel bugs. We're abusing how identity and permissions work <em>by design</em>.</p>
+
+<h3>Lateral Movement: Spreading Without Exploits</h3>
+
+<ul>
+  <li><strong>Pass-the-hash:</strong> NTLM hashes work without knowing the plaintext password.</li>
+  <li><strong>Pass-the-ticket:</strong> Kerberos tickets are portable across systems.</li>
+  <li><strong>Token impersonation:</strong> Steal tokens from memory, use them to authenticate elsewhere.</li>
+  <li><strong>RDP/WinRM/SMB:</strong> Valid credentials authenticate to remote management interfaces.</li>
+  <li><strong>WMI/DCOM:</strong> Remote execution with valid credentials — no binaries required.</li>
+</ul>
+
+<p>These techniques don't trigger vulnerability scanners. They don't require patches. They're not CVEs. They're just authentication working as intended.</p>
+
+<h3>Persistence: Maintaining Access Through Identity</h3>
+
+<ul>
+  <li><strong>Golden tickets:</strong> Forge Kerberos TGTs that grant domain admin for years.</li>
+  <li><strong>Silver tickets:</strong> Forge service tickets for specific resources.</li>
+  <li><strong>DCSync rights:</strong> Grant ourselves replication permissions to dump credentials whenever we need.</li>
+  <li><strong>Azure AD backdoors:</strong> Register devices, add credentials to service principals, create OAuth apps.</li>
+  <li><strong>Service account creation:</strong> Create new accounts with high privilege, hide them in service account OUs.</li>
+</ul>
+
+<p>No malware. No rootkits. No files on disk. Just configuration changes and identity abuse that survive reboots, reimaging, and incident response.</p>
+
+<h2>Why This Works: The Structural Advantages</h2>
+
+<h3>Legitimate by Design</h3>
+
+<p>When we authenticate with stolen credentials, we're not exploiting anything. We're using the system exactly as designed. Authentication succeeds. Authorization passes. Logs show normal activity. Security tools are optimised to detect <em>abnormal</em> behaviour. But credential use is normal — thousands of authentications occur every minute in an enterprise. How do you alert on "user authenticated successfully" when that's what legitimate users do all day?</p>
+
+<h3>Signature Evasion Built-In</h3>
+
+<p>EDR and AV look for malicious code. But we're not running malware. We're running PowerShell (built-in, signed by Microsoft), WMI (legitimate Windows management), Azure CLI (official tooling), and native authentication libraries. These tools don't trigger alerts because they're not malicious — they're administrative. And we have credentials that say we're allowed to use them.</p>
+
+<h3>Encryption Works Against Defenders</h3>
+
+<p>Modern authentication uses encryption for everything. TLS for transport, Kerberos encryption for tickets, encrypted tokens, encrypted API calls. This makes network monitoring nearly useless. We can't see credential theft in transit because it's encrypted. Encryption is a security control — but it's one that prevents visibility into exactly the layer where attacks occur.</p>
+
+<h3>Scale Works in Our Favor</h3>
+
+<p>Large enterprises have thousands of user accounts, hundreds of service accounts, dozens of admin accounts, complex role assignments, nested group memberships, and forgotten shadow IT. Nobody knows what normal looks like at scale. Nobody can audit every account. Complexity is our cover. The bigger the organisation, the easier it is to hide in the noise.</p>
+
+<h2>What Defenders Get Wrong</h2>
+
+<h3>Focusing on Perimeter Security</h3>
+
+<p>Firewalls, IDS/IPS, and WAFs control network boundaries. But we don't attack the perimeter — we authenticate through it. Once we have credentials, the perimeter lets us in. That's what it's designed to do. Zero Trust is supposed to fix this, but in practice, Zero Trust implementations still rely on identity — and if we control identity, we control access.</p>
+
+<h3>Trusting MFA Too Much</h3>
+
+<p>MFA raises the bar, but it's not a barrier. It can be bypassed via real-time phishing proxies that steal the session token after approval, MFA fatigue attacks (spam push notifications until the user approves one), token theft after authentication, helpdesk social engineering, and legacy protocols (SMTP, IMAP, POP3) that often don't enforce MFA. MFA protects initial authentication. It doesn't protect the session after authentication. And sessions can last hours, days, or weeks.</p>
+
+<h3>Assuming Detection Exists</h3>
+
+<p>Most organisations assume they'd detect credential abuse. They have SIEM. They have EDR. They have a SOC. But what are they actually detecting? Authentication success logs are too noisy to alert on. Failed logins don't fire because we have valid credentials. Malware signatures don't match because we don't use malware. Exploit attempts don't fire because we don't exploit. Detection is built for what attacks used to look like. It's not built for "user authenticated with valid credentials and accessed authorised resources."</p>
+
+<h2>The Real Attack Surface</h2>
+
+<p>If identity is the attack surface, then every system that manages, stores, or validates identity is critical infrastructure: Active Directory, Azure AD/Entra ID, IAM systems (AWS IAM, GCP IAM, Azure RBAC), identity providers (Okta, Ping, ADFS), credential stores (Vault, Key Vault, Secrets Manager), endpoints where credentials are entered and tokens are stored, and every application that authenticates users.</p>
+
+<p>Compromise any of these, and you own identity. Own identity, and you own access. Own access, and you own the enterprise. This is why domain controllers are prime targets. This is why privilege escalation focuses on ACLs and delegation rather than exploits. Because once we control the identity layer, we control everything built on top of it.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>Identity isn't part of the attack surface. Identity <em>is</em> the attack surface.</p>
+
+<p>Vulnerabilities still exist. But we don't need them. Credentials are more reliable, harder to detect, and structurally advantaged against modern defences. Every user account is a potential entry point. Every service account is a potential privilege escalation. Every token is a potential session hijack. Every trust relationship is a potential lateral movement path.</p>
+
+<div class="callout">We don't exploit systems. We exploit identity. Because identity is where the access actually lives.</div>
+
+</div>
+
+<div class="post-nav">
+  <div class="post-nav-item">
+    <div class="post-nav-dir">← previous</div>
+    <div class="post-nav-title"><a href="red-team-vs-pentest.html">Red Team vs Penetration Test: Understanding the Difference</a></div>
+  </div>
+  <div class="post-nav-item next">
+    <div class="post-nav-dir">next →</div>
+    <div class="post-nav-title"><a href="kerberos-delegation-defense.html">Why Your Kerberos Delegation Config Is a Privilege Escalation Path</a></div>
+  </div>
+</div>
+
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav">
+    <a href="../index.html">home</a>
+    <a href="../posts.html">posts</a>
+    <a href="mailto:sean@sparwol.com">contact</a>
+  </nav>
+</footer>
+
+</body>
+</html>

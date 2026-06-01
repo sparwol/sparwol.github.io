@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beacon Hygiene: Surviving Modern EDR // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-trade">Tradecraft</span></div>
+  <h1>Beacon Hygiene: Surviving Modern EDR</h1>
+  <div class="post-meta-row"><span>In progress</span><span>·</span><span>Red team tradecraft</span></div>
+</div>
+<div class="post-status-bar is-wip">Working draft — drawn from CRTO study and engagement notes.</div>
+<div class="article-body">
+
+<p>The old mental model of EDR evasion was signature evasion — change the bytes, defeat the hash, get past the scanner. That model is dead. Modern endpoint detection and response doesn't primarily care what your payload looks like on disk. It cares what your payload <em>does</em>, and it watches the places where doing anything interesting generates telemetry.</p>
+
+<p>Defeating EDR is therefore not a signature problem. It's a telemetry problem. The question is not "will my binary get flagged" but "what signal does my activity emit, and can I reduce it below the threshold where it gets correlated into a detection." Once you frame it that way, beacon hygiene becomes the discipline of producing as little observable signal as possible.</p>
+
+<h2>Know What EDR Actually Sees</h2>
+
+<p>You cannot reduce a signal you don't understand. Modern EDR draws telemetry from a handful of well-defined sources:</p>
+
+<ul>
+  <li><strong>Userland hooks</strong> — EDR injects into processes and hooks common API functions to observe calls before they reach the kernel. This is the layer that unhooking and direct syscalls aim to bypass.</li>
+  <li><strong>Kernel callbacks</strong> — process creation, thread creation, image loads, and handle operations are reported to the EDR driver through documented kernel notification routines. These are harder to evade because they live below userland.</li>
+  <li><strong>ETW</strong> — Event Tracing for Windows, particularly the .NET and AMSI providers, surfaces managed code execution and script content. This is why in-memory .NET tradecraft has to account for ETW patching.</li>
+  <li><strong>AMSI</strong> — the Antimalware Scan Interface intercepts script and in-memory content for inspection at execution time.</li>
+</ul>
+
+<p>Each source is a place you emit signal. The operator's job is to understand which of your actions hits which source, and to choose techniques that minimise the total.</p>
+
+<h2>Sleep Is When You're Most Exposed</h2>
+
+<p>A beacon spends most of its life sleeping between check-ins. During sleep, its memory sits in the process address space where memory-scanning EDR can find it — recognisable beacon structures, decrypted configuration, the artefacts of a known C2 framework. Sleep masking addresses this: encrypting the beacon's own memory during the sleep interval and decrypting only when active, so a scan during sleep finds noise rather than signal.</p>
+
+<p>This is representative of the broader principle. The loud moments — injection, post-exploitation, lateral movement — get the attention, but the quiet moments are where naive tradecraft leaves recognisable artefacts sitting in memory for hours.</p>
+
+<h2>BOFs Over Fork-and-Run</h2>
+
+<p>The traditional post-exploitation pattern — fork a new process and run a tool in it — generates exactly the telemetry EDR is built to catch: process creation, thread creation in a remote process, image loads. Beacon Object Files run inline within the existing beacon process, performing their work without spawning anything, which removes an entire class of the most-watched telemetry events. The shift from fork-and-run to BOF-based tradecraft is one of the highest-leverage hygiene improvements available.</p>
+
+<div class="callout">The reframe that matters: stop thinking about hiding the payload and start thinking about reducing the signal. Every action has a telemetry cost. Operate like you're being metered on it, because you are.</div>
+
+<p><em>Continuing: unhooking and direct syscalls in practice, ETW patching tradeoffs, call stack spoofing, and how to test your own signal before an engagement.</em></p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← previous</div><div class="post-nav-title"><a href="entra-id-attacks.html">Entra ID and the Hybrid Identity Attack Surface</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">next →</div><div class="post-nav-title"><a href="c2-infrastructure.html">C2 Infrastructure That Survives Contact</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>

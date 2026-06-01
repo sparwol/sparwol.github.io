@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C2 Infrastructure That Survives Contact // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-trade">Tradecraft</span></div>
+  <h1>C2 Infrastructure That Survives Contact</h1>
+  <div class="post-meta-row"><span>In progress</span><span>·</span><span>Red team tradecraft</span></div>
+</div>
+<div class="post-status-bar is-wip">Working draft.</div>
+<div class="article-body">
+
+<p>The teamserver is the most valuable thing you control on an engagement and the easiest to lose. Point a beacon directly at it and the first time a defender pulls the C2 address out of memory or netflow, your infrastructure is burned, your beacons are dead, and your access is gone. Infrastructure that survives contact with a competent defender is layered specifically so that losing the parts they can see doesn't cost you the parts that matter.</p>
+
+<h2>Redirectors: Never Expose the Teamserver</h2>
+
+<p>The first principle is that beacons never talk to the teamserver directly. They talk to redirectors — disposable hosts whose only job is to forward legitimate C2 traffic to the teamserver and drop everything else. When a defender identifies the C2 address, they identify a redirector. You burn the redirector, stand up another, update the beacon's profile, and the teamserver — with all your session state, your loot, your operational history — never appears in their investigation.</p>
+
+<p>Redirectors come in flavours: dumb TCP/HTTP forwarders, smarter filtering reverse proxies that validate traffic against your malleable profile before forwarding, and domain-fronting or CDN-based fronts where appropriate. The common thread is that the disposable thing is in the line of fire and the irreplaceable thing is not.</p>
+
+<h2>Malleable Profiles: Look Like Something Else</h2>
+
+<p>A C2 framework's default traffic is a signature. Network detection is trained on it. Malleable C2 profiles let you reshape the traffic — headers, URIs, timing, the structure of the data in transit — so that beacon check-ins resemble ordinary web traffic rather than recognisable C2. A well-constructed profile makes your traffic blend into the noise of the environment; a default profile is a flare.</p>
+
+<p>The profile also has to be internally consistent with the redirector's filtering rules. The redirector validates that incoming traffic matches the profile; anything that doesn't gets dropped or redirected to a decoy. This means a defender scanning your redirector sees a benign-looking web server, not an open C2 listener.</p>
+
+<h2>Categorisation, Aging, and the OPSEC of Domains</h2>
+
+<p>Fresh domains are suspicious. Domains in uncategorised or newly-registered states get blocked by web proxies on principle. Operational infrastructure benefits from domains that are aged, categorised into a benign-looking category, and consistent with the pretext of the engagement. The work of standing up infrastructure that survives contact begins weeks before the engagement, in the acquisition and warming of the domains and the staging of the redirector layer.</p>
+
+<div class="callout">The design goal is compartmentalisation: assume every layer the beacon touches will eventually be discovered, and architect so that discovery of the exposed layers never reaches the teamserver. What burns should always be the cheap, replaceable thing.</div>
+
+<p><em>Continuing: specific redirector configurations, profile development and testing, DNS and HTTPS C2 tradeoffs, and infrastructure automation that doesn't leave a fingerprint.</em></p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← previous</div><div class="post-nav-title"><a href="beacon-hygiene.html">Beacon Hygiene: Surviving Modern EDR</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">all posts →</div><div class="post-nav-title"><a href="../posts.html">Back to archive</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>

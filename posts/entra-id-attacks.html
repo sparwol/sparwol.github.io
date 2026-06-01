@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entra ID and the Hybrid Identity Attack Surface // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-id">AD &amp; Identity</span></div>
+  <h1>Entra ID and the Hybrid Identity Attack Surface</h1>
+  <div class="post-meta-row"><span>In progress</span><span>·</span><span>AD &amp; Identity</span></div>
+</div>
+<div class="post-status-bar is-wip">Working draft — active research area.</div>
+<div class="article-body">
+
+<p>On-prem Active Directory attacks are mature and well documented. The Kerberos abuses, the ACL paths, the delegation problems — the techniques are known, the tooling is excellent, and the defensive guidance exists even if nobody follows it. That's the territory the <a href="kerberos-delegation-abuse.html">delegation</a> work covers.</p>
+
+<p>The territory that's still moving is the hybrid join — the seam between on-prem AD and Entra ID (the identity platform formerly called Azure AD). Most enterprises are not cloud-native and not on-prem-only. They're hybrid, with identities synchronised across both, trust relationships spanning both, and a token infrastructure that most defenders understand far less well than they understand Kerberos. That gap is where the next generation of identity attacks lives.</p>
+
+<h2>The Primary Refresh Token Is the New TGT</h2>
+
+<p>In on-prem AD, the Ticket Granting Ticket is the prize — steal it, and you can request service tickets as the user. In the Entra ID world, the equivalent prize is the Primary Refresh Token. The PRT is a long-lived credential bound to a device and a user, used to obtain access tokens for cloud resources without re-authenticating, and critically, it survives in a way that bypasses much of the conditional-access and MFA machinery defenders rely on.</p>
+
+<p>A PRT extracted from a compromised device is a portable identity. It bypasses MFA because MFA was already satisfied when the PRT was issued. It works from anywhere the conditional access policy doesn't explicitly block. It looks like legitimate authentication because it is legitimate authentication — the same structural problem that makes on-prem ticket theft so effective, transplanted to the cloud.</p>
+
+<h2>Seamless SSO and the Trust Seam</h2>
+
+<p>Seamless Single Sign-On was designed to make the hybrid experience frictionless — users on domain-joined machines get signed into cloud resources automatically. The mechanism involves a computer account in on-prem AD (<code>AZUREADSSOACC</code>) whose key, if recovered, enables forging Kerberos tickets that Entra ID will accept. The on-prem compromise becomes a cloud compromise through the trust seam between the two systems.</p>
+
+<p>This is the pattern worth internalising about hybrid environments: the attacker doesn't have to break either system. They exploit the place where the two systems must trust each other, because that trust was configured once, by someone who has since moved on, and reviewed never.</p>
+
+<h2>Why This Is the Right Vertical to Extend Into</h2>
+
+<p>The on-prem AD knowledge transfers directly. The mental model — identity as the attack surface, trust relationships as the weak point, legitimate credentials as the quietest path — is the same. What changes is the substrate: tokens instead of tickets, conditional access instead of GPO, Graph API instead of LDAP. The operator who understands why unconstrained delegation is catastrophic on-prem is positioned to understand why PRT theft is catastrophic in the cloud, because it's the same failure with new packaging.</p>
+
+<div class="callout">Hybrid identity is where the on-prem AD attack discipline meets the cloud, and the seam between them is under-researched relative to how much enterprise identity now flows through it. That's exactly the kind of gap worth owning.</div>
+
+<p><em>Continuing: PRT extraction techniques, device registration abuse, conditional access bypass patterns, Graph API enumeration, and detection guidance for each.</em></p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← previous</div><div class="post-nav-title"><a href="crypto-posture-recon.html">Cryptographic Posture as Reconnaissance</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">next →</div><div class="post-nav-title"><a href="beacon-hygiene.html">Beacon Hygiene: Surviving Modern EDR</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>

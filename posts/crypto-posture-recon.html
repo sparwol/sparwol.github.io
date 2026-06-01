@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptographic Posture as Reconnaissance // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-crypto">Applied Crypto</span></div>
+  <h1>Cryptographic Posture as Reconnaissance</h1>
+  <div class="post-meta-row"><span>In progress</span><span>·</span><span>Applied cryptographic attacks</span></div>
+</div>
+<div class="post-status-bar is-wip">Working draft.</div>
+<div class="article-body">
+
+<p>During reconnaissance, most operators map the obvious surface — open ports, running services, exposed applications, employee names for the phishing list. Far fewer map the target's cryptographic posture, which is unfortunate, because an organisation's crypto choices are one of the most honest signals it emits about its overall security maturity and its blind spots.</p>
+
+<p>Crypto posture is observable, it's external, and it's almost never monitored. Scanning it costs the target nothing they'll notice and tells you a great deal about where the soft tissue is.</p>
+
+<h2>What the Posture Reveals</h2>
+
+<p>The cryptographic configuration of a target's external surface is a maturity fingerprint. A few examples of what specific observations imply:</p>
+
+<ul>
+  <li><strong>TLS version sprawl.</strong> Endpoints still negotiating TLS 1.0 or 1.1 alongside modern ones indicate inconsistent configuration management — and where config management is inconsistent, other controls are too.</li>
+  <li><strong>Weak cipher suites still enabled.</strong> Support for export-grade, RC4, 3DES, or CBC suites with known issues signals that nobody owns the TLS configuration, or that a legacy system is propping the door open for everything behind it.</li>
+  <li><strong>Certificate hygiene.</strong> Self-signed certs in production, wildcard certs shared across unrelated services, long-lived certs that never rotate, certs issued to internal hostnames leaking the internal naming scheme — each is both a finding and a recon datapoint.</li>
+  <li><strong>No crypto-agility.</strong> An organisation with hardcoded algorithm choices and no migration path is one that will be slow to respond to any cryptographic break — including the post-quantum transition — which makes it a better long-game target.</li>
+</ul>
+
+<h2>Certificate Transparency as a Recon Goldmine</h2>
+
+<p>Certificate Transparency logs are a public, append-only record of every certificate issued by participating CAs. For an attacker doing reconnaissance, they are one of the highest-value passive sources available: every subdomain that ever got a certificate, internal hostnames that leaked into SAN fields, staging and development environments that were never meant to be found, and the timeline of an organisation's infrastructure changes.</p>
+
+<p>None of this touches the target. It's all in public logs. And it routinely surfaces attack surface that active scanning misses — the forgotten dev server with the certificate issued two years ago, the acquisition whose domains were folded in without anyone updating the asset inventory.</p>
+
+<h2>From Posture to Path</h2>
+
+<p>The point of mapping crypto posture is not to produce a list of TLS findings for the report appendix. It's to identify where the cryptographic weakness opens an actual path: the legacy endpoint with weak TLS that terminates inside the network, the shared wildcard cert whose private key compromise affects a dozen services, the internal hostnames from CT logs that become the target list for the next phase.</p>
+
+<div class="callout">Crypto posture is reconnaissance because crypto debt is structural debt. An organisation that can't keep its TLS configuration current is telling you something true about everything else it maintains.</div>
+
+<p><em>Continuing: the scanning methodology, tooling (see <a href="../tools/cryptorecon.html">cryptorecon</a>), and how to fold crypto posture into the broader recon picture.</em></p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← previous</div><div class="post-nav-title"><a href="harvest-now-decrypt-later.html">Harvest Now, Decrypt Later</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">next →</div><div class="post-nav-title"><a href="entra-id-attacks.html">Entra ID and the Hybrid Identity Attack Surface</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>

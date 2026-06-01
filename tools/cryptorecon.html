@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cryptorecon // sparwol</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html">posts</a></li>
+    <li><a href="index.html" class="active">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-crypto">Applied Crypto</span></div>
+  <h1>cryptorecon</h1>
+  <div class="post-meta-row"><span>In development</span><span>·</span><span>Python</span><span>·</span><a href="https://github.com/sparwol" target="_blank" rel="noopener">github/sparwol</a></div>
+</div>
+<div class="post-status-bar is-wip">Design phase.</div>
+<div class="article-body">
+<p>A cryptographic posture scanner for the reconnaissance phase. Enumerates TLS versions, cipher suites, certificate practices, and crypto-agility indicators across a target's external surface, then maps the findings to attack-surface implications rather than just listing them.</p>
+
+<div class="tool-spec">
+  <div class="spec-item"><div class="spec-key">Input</div><div class="spec-val">Target domain or IP range</div></div>
+  <div class="spec-item"><div class="spec-key">Sources</div><div class="spec-val">Active TLS probing + Certificate Transparency logs</div></div>
+  <div class="spec-item"><div class="spec-key">Output</div><div class="spec-val">Posture report with attack-surface mapping</div></div>
+  <div class="spec-item"><div class="spec-key">Language</div><div class="spec-val">Python 3.x</div></div>
+</div>
+
+<h2>What It Does</h2>
+<p>Beyond a standard TLS scanner, cryptorecon is built to answer the operator's question — not "what cipher suites are enabled" but "where does the crypto debt point me." It correlates weak TLS endpoints with the services behind them, mines Certificate Transparency logs for forgotten subdomains and leaked internal hostnames, and flags the absence of crypto-agility as a long-game indicator.</p>
+
+<p>See the related post: <a href="../posts/crypto-posture-recon.html">Cryptographic Posture as Reconnaissance</a>.</p>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="index.html">tools</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>
