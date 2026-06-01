@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Four Years of Tears: How WannaCry Changed Cybersecurity // sparwol</title>
+<link rel="icon" type="image/png" href="/siteicon.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <a class="nav-id" href="../index.html">sparwol<span class="cursor"></span></a>
+  <ul class="nav-links">
+    <li><a href="../posts.html" class="active">posts</a></li>
+    <li><a href="../tools/index.html">tools</a></li>
+    <li><a href="../index.html#about">about</a></li>
+    <li><a href="mailto:sean@sparwol.com">contact</a></li>
+  </ul>
+</nav>
+<div class="post-banner"><img src="../assets/iot.jpg" alt="Threat landscape analysis"></div>
+<div class="post-hero">
+  <div class="cats" style="margin-bottom:1.2rem"><span class="cat cat-analysis">Analysis</span></div>
+  <h1>Four Years of Tears: How WannaCry Changed Cybersecurity</h1>
+  <div class="post-meta-row"><span>2021-05-15</span><span>·</span><span>Ransomware · Threat Landscape</span></div>
+</div>
+<div class="article-body">
+
+<p>In the three decades that the term cybersecurity has been in use, a few select events have come to define the field, and it is only in hindsight that we can fully analyse their implications. Cyber-attacks are commonly divided into generations by sophistication. The Morris Worm, widely considered the first virus, marked the first generation in late 1988. The Melissa worm followed in 1999 with the second generation of network attacks. MyDoom opened the third in 2004, where applications became the focus. In 2010, Stuxnet was the first nation-state attack on an industrial system using zero-day vulnerabilities. This was the dawn of the fourth generation, centred on the payload, and the beginning of modern cybersecurity as we know it.</p>
+
+<p>The fifth generation was born with WannaCry: an attack that rendered hundreds of thousands of computers useless and opened the eyes of business leaders around the globe. The industry met one of its greatest challenges to date, and the state of cyberculture changed permanently.</p>
+
+<h2>The Event</h2>
+
+<p>On May 12, 2017, the Spanish telecom Telefónica was hit by a new flavour of ransomware. Within hours, a tweet from a physician at the United Kingdom's National Health Service broke the news to the English-speaking world of a large-scale cyberattack on its systems. Departure boards for commuter trains in Germany, cinema screens in South Korea, and hospital monitors in Jakarta all began displaying Bitcoin demands. This crypto-ransomware became the largest and fastest-spreading cybersecurity event the world had yet seen. Its aftereffects reshaped not only the threat landscape but enterprise awareness and executive involvement in security.</p>
+
+<p>What came to be known as WannaCry was the first of its kind: a new class of super-threat that weaponised state-sponsored tools, spanned multiple vectors, and operated at global scale.</p>
+
+<h2>How It Worked</h2>
+
+<p>In April 2017, a group known as the Shadow Brokers released a tool code-named ETERNALBLUE as part of a leak of stolen tooling. These tools were developed by the Equation Group, a unit long believed to operate on behalf of the National Security Agency. ETERNALBLUE exploited a vulnerability in Microsoft's Server Message Block (SMB) protocol, spreading to all Windows XP through Server 2016 systems on an SMB-enabled network and allowing remote code execution.</p>
+
+<p>After the Shadow Brokers publicised a list of tools they intended to leak in January 2017, Microsoft patched four of them, only a month before the leak, without attribution to any researcher. Some have speculated Microsoft was given, or paid for, the exploits to avoid confrontation. Regardless, the continued use of outdated and unpatched systems, combined with poor awareness of the risk, gave WannaCry the foothold it needed. Even months later those same vulnerabilities remained unpatched when the Petya attack arrived on June 27, 2017.</p>
+
+<p>The SMB worm that distributed WannaCry took advantage of <em>hard outside, soft inside</em> networks, the still-common, naïve approach of hardening the perimeter while leaving the internal network exposed. Those flat internal environments let WannaCry spread quickly and prolifically once it was through the door.</p>
+
+<h3>Scope</h3>
+
+<p>The NHS was among the hardest hit. The attack reached roughly one-third of all NHS hospital machines. Surgeries were cancelled and ambulances rerouted. A total of 19,000 appointments were cancelled, at an estimated cost of £92 million. Within a single weekend, more than 300,000 computers were infected across some 150 countries, with total damage estimated to exceed $4 billion.</p>
+
+<h2>Effects</h2>
+
+<p>WannaCry's effects were widespread and lasting, reshaping risk management and the security landscape. Three years on, an IBM X-Force incident manager described May 12, 2017 as the day organisations started taking the business side of cybersecurity risk seriously. Executives and board members recognised ransomware as a material threat, and the role of security leadership shifted accordingly.</p>
+
+<p>They also learned that surviving such an attack was possible, that a company could be breached and emerge with its reputation intact. One EU logistics brand suffered little reputational damage because its CEO took a visible role and spoke directly to customers in the days after. The combination of the cryptoworm and a confident, communicative response became an early model for a culture of shared security responsibility.</p>
+
+<p>While this was a win for governance and public awareness, it also put ransomware squarely on the radar of global threat actors as a vector with real potential for damage and financial gain. Commercial ransomware operators began studying the value of victim data, lost, ransomed, or sold to a competitor. WannaCry was the first large-scale demonstration of how controls fail, and what happens when they do.</p>
+
+<h2>Developments</h2>
+
+<p>The threat actors were initially linked to the Lazarus Group, an advanced persistent threat tied to the North Korean government. A December 2020 indictment later named members of North Korea's military intelligence service, the Reconnaissance General Bureau.</p>
+
+<p>WannaCry's underlying exploit did not fade. ETERNALBLUE remained in heavy use long after the outbreak, and a significant majority of vulnerabilities still go unpatched well past 30 days. Ransomware, meanwhile, grew more precise, shifting from indiscriminate spread toward specific individuals and machines of interest, the methodology of a sniper rather than a shotgun. Threat actor tactics, techniques, and procedures became more specialised. For defenders this is double-edged: more focused adversaries are easier to identify, but the complexity and severity of attacks keep escalating.</p>
+
+<h2>What It Taught Us</h2>
+
+<p>The trends WannaCry set in motion have largely continued in the years since: more campaigns targeting people of interest (spear-phishing) and leadership (whaling); better incident response planning; a larger role for risk management, simulation, and threat intelligence. Containerisation and similar isolation strategies help, but the single most effective defence against this class of attack remains unglamorous: diligence about updates and patches. As GCHQ alumnus and security researcher Matt Tait put it at the time of the leak: <em>install the updates when Windows tells you to. You should be doing that anyway.</em></p>
+
+<div class="callout">WannaCry's lasting lesson isn't about one worm or one exploit. It's that the gap between a known patch and an applied one is where catastrophe lives, and that gap is an organisational failure long before it's a technical one.</div>
+
+<p style="font-size:0.78rem;color:var(--dim);margin-top:3rem;border-top:1px solid var(--border);padding-top:1.5rem">Originally published May 15, 2021. Lightly edited for clarity.</p>
+
+</div>
+<div class="post-nav">
+  <div class="post-nav-item"><div class="post-nav-dir">← all posts</div><div class="post-nav-title"><a href="../posts.html">Back to archive</a></div></div>
+  <div class="post-nav-item next"><div class="post-nav-dir">next →</div><div class="post-nav-title"><a href="identity-attack-surface.html">Identity Is the Attack Surface</a></div></div>
+</div>
+<footer>
+  <span class="foot-left">© 2024 <span>sparwol.com</span></span>
+  <nav class="foot-nav"><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="mailto:sean@sparwol.com">contact</a></nav>
+</footer>
+</body>
+</html>
