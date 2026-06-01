@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sparwol — Sean Parrott-Wolfe</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/siteicon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,17 +20,17 @@
 </nav>
 
 <div class="site-intro">
-  <div class="intro-eyebrow">// sparwol — offensive security research</div>
-  <div class="intro-name">Sean Parrott-Wolfe</div>
+  <img class="hero-logo" src="assets/logo.png" alt="Sparwol Security">
+  <div class="hero-role">Offensive Security Research</div>
   <p class="intro-statement">
-    Offensive security research. Two things I go deep on: <strong style="color:var(--acc2);font-weight:500">Active Directory and identity attacks</strong>,
-    and <strong style="color:#5a9ac0;font-weight:500">applied cryptographic attacks</strong> — the implementation failures, not the broken math.
-    Plus red team tradecraft from the work itself.
+    Two things I go deep on: <strong style="color:var(--acc2);font-weight:600">Active Directory and identity attacks</strong>,
+    and <strong style="color:#7ab4d8;font-weight:600">applied cryptographic attacks</strong> — the implementation failures, not the broken math.
+    Plus red team tradecraft drawn from the work itself.
   </p>
   <div class="intro-meta">
-    <span>Maine</span>
+    <span>Sean Parrott-Wolfe</span>
     <span class="intro-sep">·</span>
-    <span>Deer Brook Technical Services</span>
+    <span>Addison, Maine</span>
     <span class="intro-sep">·</span>
     <a href="mailto:sean@sparwol.com">sean@sparwol.com</a>
     <span class="intro-sep">·</span>
@@ -43,10 +43,6 @@
 <div class="currently-bar">
   <span class="now-label">// currently</span>
   <div class="now-items">
-    <span class="now-item">
-      <span class="now-key">studying</span>
-      <span class="now-val">CRTL — Cobalt Strike &amp; C2 tradecraft</span>
-    </span>
     <span class="now-item">
       <span class="now-key">writing</span>
       <span class="now-val"><a href="posts/algorithm-isnt-the-target.html">crypto implementation attack catalog</a></span>
@@ -159,6 +155,23 @@
   </div>
 </section>
 
+<!-- ANALYSIS -->
+<section class="sec" id="analysis">
+  <div class="sec-header">
+    <span class="sec-label">analysis</span>
+  </div>
+  <div class="work-grid">
+
+    <div class="work-card">
+      <div class="work-card-top"><span class="cat cat-analysis">Analysis</span><span class="work-status status-published">published</span></div>
+      <h3><a href="posts/wannacry-four-years.html">Four Years of Tears: How WannaCry Changed Cybersecurity</a></h3>
+      <p>A retrospective on the attack that defined the fifth generation of cyber threats — weaponised state tooling, the EternalBlue SMB worm, and the organisational failures that let a known patch gap become a global catastrophe.</p>
+      <div class="work-card-foot"><span class="work-date">2021-05-15</span><span class="arc-time">8 min</span></div>
+    </div>
+
+  </div>
+</section>
+
 <!-- TOOLS -->
 <section class="sec" id="tools">
   <div class="sec-header">
@@ -195,7 +208,7 @@
 <div class="about-strip" id="about">
   <div>
     <h2>Sean Parrott-Wolfe</h2>
-    <div class="role">Offensive Security · Maine</div>
+    <div class="role">Offensive Security · Addison, Maine</div>
     <div class="links">
       <a class="about-link" href="mailto:sean@sparwol.com">sean@sparwol.com</a>
       <a class="about-link" href="https://github.com/sparwol" target="_blank" rel="noopener">github/sparwol</a>

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kerberos Delegation Abuse // sparwol</title>
+<link rel="icon" type="image/png" href="/siteicon.png">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -17,6 +18,7 @@
     <li><a href="mailto:sean@sparwol.com">contact</a></li>
   </ul>
 </nav>
+<div class="post-banner"><img src="../assets/server.jpg" alt="Active Directory and identity"></div>
 
 <div class="post-hero">
   <div class="cats" style="margin-bottom:1.2rem">
@@ -33,7 +35,7 @@
 
 <div class="article-body">
 
-<p>I love Kerberos delegation. It's one of those things that sounds completely reasonable when someone explains why it exists — "the web server needs to access the database as the user, not as itself" — and then you think about it for five seconds and realise it's a privilege escalation goldmine.</p>
+<p>I love Kerberos delegation. It's one of those things that sounds completely reasonable when someone explains why it exists: "the web server needs to access the database as the user, not as itself". And then you think about it for five seconds and realise it's a privilege escalation goldmine.</p>
 
 <p>Here's what happens: you compromise a service account that has delegation configured. Now you can impersonate users to other systems. Including domain admins. Including to domain controllers. The service account was <em>supposed</em> to have this ability. That's the whole point of delegation. But nobody ever said it couldn't be abused once we controlled that account.</p>
 
