@@ -68,7 +68,7 @@ nav{
 .hero-bg::after{content:'';position:absolute;inset:0;background:
   radial-gradient(ellipse 70% 60% at 25% 30%,rgba(229,57,59,0.14),transparent 70%),
   linear-gradient(to bottom,rgba(12,10,10,0.45) 0%,rgba(12,10,10,0.82) 60%,var(--bg) 100%)}
-.hero-content{position:relative;z-index:1;max-width:880px}
+.hero-content,.site-intro > *:not(.hero-bg){position:relative;z-index:1;max-width:880px}
 .hero-lockup{display:flex;align-items:center;gap:1.4rem;margin-bottom:1.8rem}
 .hero-icon{width:clamp(56px,9vw,92px);height:clamp(56px,9vw,92px);flex-shrink:0;filter:drop-shadow(0 2px 12px rgba(229,57,59,0.35))}
 .hero-logo{width:clamp(200px,30vw,320px);height:auto;display:block}
